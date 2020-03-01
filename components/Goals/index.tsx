@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Button, ImageBackground, Text, View, StyleSheet } from 'react-native';
+import { ImageBackground, Text, View, StyleSheet } from 'react-native';
 import SelectionItem from './SelectionItem';
+import Button from '../Button';
 
 export default ({ navigation }) => {
   const [findWorkouts, setFindWorkouts] = useState(false);
@@ -39,9 +40,9 @@ export default ({ navigation }) => {
         )}
       </View>
       <Button
-        title="Continue"
-        color="#9ADCD7"
+        disabled={!selectionProps.some(({ value }) => value === true)}
         onPress={() => navigation.navigate('DueDate')}
+        text="Continue"
       />
     </View>
   </ImageBackground>
@@ -73,8 +74,5 @@ const styles = StyleSheet.create({
   selectionList: {
     width: '100%',
     marginBottom: 20
-  },
-  cta: {
-    width: '100%'
   }
 });
