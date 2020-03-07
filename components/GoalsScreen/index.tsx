@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
-import { ImageBackground, Text, View, StyleSheet } from 'react-native';
-import SelectionItem from './SelectionItem';
-import Button from '../Button';
+import React, { FC, useState } from 'react';
+import { ImageBackground, View, StyleSheet } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-export default ({ navigation }) => {
+import BottomBox from '../BottomBox';
+import Title from '../Title';
+import Subtitle from '../Subtitle';
+import BottomButton from '../BottomButton';
+import { RootStackParamList } from '../screens';
+import SelectionItem from './SelectionItem';
+
+type Props = {
+  navigation: StackNavigationProp<RootStackParamList, 'Goals'>;
+}
+
+const GoalsScreen:FC<Props> = ({ navigation }) => {
   const [findWorkouts, setFindWorkouts] = useState(false);
   const [lessWeight, setLessWeight] = useState(false);
   const [prepareBirth, setPrepareBirth] = useState(false);
@@ -31,22 +41,19 @@ export default ({ navigation }) => {
   return <ImageBackground
     source={require('../../assets/background_image.png')}
     style={styles.bg}>
-    <View style={styles.box}>
-      <Text style={styles.title}>What are your goals?</Text>
-      <Text style={styles.subTitle}>Help us tailor our program to your needs.</Text>
+    <BottomBox>
+      <Title>What are your goals?</Title>
+      <Subtitle>Help us tailor our program to your needs.</Subtitle>
       <View style={styles.selectionList}>
         {selectionProps.map((props, i) =>
           <SelectionItem {...props} key={i} />
         )}
       </View>
-      <View style={styles.footer}>
-        <Button
+      <BottomButton
           disabled={!selectionProps.some(({ value }) => value === true)}
           onPress={() => navigation.navigate('DueDate')}
-          text="Continue"
-        />
-      </View>
-    </View>
+      />
+    </BottomBox>
   </ImageBackground>
 }
 
@@ -55,32 +62,9 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%'
   },
-  box: {
-    position: 'absolute',
-    bottom: 0,
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    padding: 30,
-    backgroundColor: 'rgba(255, 255, 255, 0.9)'
-  },
-  title: {
-    fontSize: 30,
-    marginBottom: 20
-  },
-  subTitle: {
-    fontSize: 20,
-    marginBottom: 20
-  },
   selectionList: {
-    width: '100%',
-    marginBottom: 60
-  },
-  footer: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0
+    width: '100%'
   }
 });
+
+export default GoalsScreen;

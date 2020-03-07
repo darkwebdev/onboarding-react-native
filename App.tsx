@@ -2,17 +2,12 @@ import 'react-native-gesture-handler';
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import GoalsScreen from './components/Goals';
-import DueDateScreen from './components/DueDate';
-import ActivityLevelScreen from './components/ActivityLevel';
-import SuccessScreen from './components/Success';
+import GoalsScreen from './components/GoalsScreen';
+import DueDateScreen from './components/DueDateScreen';
+import ActivityLevelScreen from './components/ActivityLevelScreen';
+import SuccessScreen from './components/SuccessScreen';
+import { RootStackParamList } from './components/screens';
 
-type RootStackParamList = {
-  Goals: undefined;
-  DueDate: undefined;
-  ActivityLevel: undefined;
-  Success: undefined;
-};
 const screenOptions = {
   title: null
 };
