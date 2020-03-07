@@ -39,11 +39,13 @@ export default ({ navigation }) => {
           <SelectionItem {...props} key={i} />
         )}
       </View>
-      <Button
-        disabled={!selectionProps.some(({ value }) => value === true)}
-        onPress={() => navigation.navigate('DueDate')}
-        text="Continue"
-      />
+      <View style={styles.footer}>
+        <Button
+          disabled={!selectionProps.some(({ value }) => value === true)}
+          onPress={() => navigation.navigate('DueDate')}
+          text="Continue"
+        />
+      </View>
     </View>
   </ImageBackground>
 }
@@ -73,6 +75,12 @@ const styles = StyleSheet.create({
   },
   selectionList: {
     width: '100%',
-    marginBottom: 20
+    marginBottom: 60
+  },
+  footer: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0
   }
 });
