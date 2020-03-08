@@ -1,12 +1,11 @@
 import React, { FC, useContext } from 'react';
-import { ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Context from '../context';
-import BottomBox from './BottomBox';
 import Title from './Title';
 import Subtitle from './Subtitle';
-import Screen from './Screen';
+import Screen, { ScreenProps } from './Screen';
 
-const SuccessScreen:FC = () => {
+const SuccessScreen: FC<ScreenProps> = ({}) => {
   const { goals, dueDate, activityLevel } = useContext(Context);
 
   return <Screen>

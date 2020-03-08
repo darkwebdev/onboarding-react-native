@@ -28,7 +28,7 @@ type Context = {
   setActivityLevel: (level: Level) => void;
 }
 
-export default createContext<Context>({
+const Context = createContext<Context>({
   goals: [],
   setGoals: () => {},
   dueDate: new Date(),
@@ -36,3 +36,5 @@ export default createContext<Context>({
   activityLevel: undefined,
   setActivityLevel: () => {}
 });
+
+export default Context;

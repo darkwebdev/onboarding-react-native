@@ -7,6 +7,7 @@ type Props = {
   onChange: (level: number) => void;
 }
 
+// todo: reotate rocket 90deg, show rocket on android
 const RocketSlider: FC<Props> = ({ value, onChange }) =>
   <View>
     {/*<Image source={require('../../assets/scale.png')} style={styles.scale} />*/}

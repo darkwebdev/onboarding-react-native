@@ -1,42 +1,40 @@
-import React, { FC, useContext, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
 
-import { RootStackParamList } from '../Screen';
 import BottomButton from '../BottomButton';
 import Title from '../Title';
 import RocketSlider from './RocketSlider';
 import Context, { levels } from '../../context';
-import Screen from '../Screen';
-
-type Props = {
-  navigation: StackNavigationProp<RootStackParamList, 'ActivityLevel'>;
-}
+import Screen, { ScreenProps } from '../Screen';
 
 const DefaultLevel = 4;
 
-const ActivityLevelScreen:FC<Props> = ({ navigation }) => {
+const ActivityLevelScreen: FC<ScreenProps> = ({ navigation }) => {
   const { activityLevel, setActivityLevel } = useContext(Context);
   const [ level, setLevel ] = useState(DefaultLevel);
 
-  const onChange = (value: number) => {
-    setLevel(value);
-    setActivityLevel(levels[value-1]);
-  };
+  useEffect(() => {
+    setActivityLevel(levels[level-1]);
+  }, [level]);
 
   return <Screen bg={require('../../assets/clouds.png')} noBox={true} style={styles.bg}>
     <View style={styles.box}>
       <Title>To get your perfect workouts, tell us your activity level!</Title>
-      <RocketSlider value={level} onChange={onChange}/>
+      <RocketSlider value={level} onChange={setLevel}/>
       <Text style={styles.levelText}>{activityLevel}</Text>
-      <BottomButton onPress={() => { navigation.navigate('Success'); }} />
+      <BottomButton
+        style={styles.cta}
+        onPress={() => { navigation.navigate('Success'); }}
+      />
     </View>
   </Screen>;
 };
 
 const styles = StyleSheet.create({
   bg: {
-    height: '80%'
+    position: 'absolute',
+    top: '30%',
+    height: '40%'
   },
   box: {
     flex: 1,
@@ -46,6 +44,9 @@ const styles = StyleSheet.create({
   },
   levelText: {
     fontSize: 20
+  },
+  cta: {
+    // bottom: -150
   }
 });
 

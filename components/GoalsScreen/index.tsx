@@ -1,48 +1,39 @@
 import React, { FC, useContext, useState } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { StyleSheet, View } from 'react-native';
 
 import Title from '../Title';
 import Subtitle from '../Subtitle';
 import BottomButton from '../BottomButton';
 import SelectionItem from './SelectionItem';
 import Context, { goals } from '../../context';
-import Screen, { RootStackParamList } from '../Screen';
+import Screen, { ScreenProps } from '../Screen';
 
-type Props = {
-  navigation: StackNavigationProp<RootStackParamList, 'Goals'>;
-}
+type GoalIndex = 'findWorkouts' | 'lessWeight' | 'prepareBirth' | 'feelRelaxed';
 
 type State = {
-  findWorkouts: boolean;
-  lessWeight: boolean;
-  prepareBirth: boolean;
-  feelRelaxed: boolean;
+  [index in GoalIndex]?: boolean;
 }
 
-const defaultState: State = {
-  findWorkouts: false,
-  lessWeight: false,
-  prepareBirth: false,
-  feelRelaxed: false
-};
-
-const GoalsScreen:FC<Props> = ({ navigation }) => {
-  const [{ findWorkouts, lessWeight, prepareBirth, feelRelaxed }, setState] = useState<State>(defaultState);
+const GoalsScreen: FC<ScreenProps> = ({ navigation }) => {
+  const [{ findWorkouts, lessWeight, prepareBirth, feelRelaxed }, setState] = useState<State>({});
   const { setGoals } = useContext(Context);
+
+  const onChange = (goal: keyof State) => (value: boolean) => {
+    setState(state => ({ ...state, [goal]: value }));
+  };
 
   const selectionProps = [{
     value: findWorkouts,
-    onChange: value => setState(state => ({...state, findWorkouts: value }))
+    onChange: onChange('findWorkouts')
   }, {
     value: lessWeight,
-    onChange: value => setState(state => ({...state, lessWeight: value }))
+    onChange: onChange('lessWeight')
   }, {
     value: prepareBirth,
-    onChange: value => setState(state => ({...state, prepareBirth: value }))
+    onChange: onChange('prepareBirth')
   }, {
     value: feelRelaxed,
-    onChange: value => setState(state => ({...state, feelRelaxed: value }))
+    onChange: onChange('feelRelaxed')
   }];
 
   const selectedGoals = () =>

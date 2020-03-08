@@ -1,19 +1,14 @@
-import React, { FC, useContext, useState } from 'react';
+import React, { FC, useContext } from 'react';
 import { StyleSheet } from 'react-native';
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
-import { StackNavigationProp } from '@react-navigation/stack';
 
 import Subtitle from './Subtitle';
 import BottomButton from './BottomButton';
-import Screen, { RootStackParamList } from './Screen';
+import Screen, { ScreenProps } from './Screen';
 import Context from '../context';
 
-type Props = {
-  navigation: StackNavigationProp<RootStackParamList, 'DueDate'>;
-}
-
 // todo: limit dates to today->9month
-const DueDateScreen:FC<Props> = ({ navigation }) => {
+const DueDateScreen: FC<ScreenProps> = ({ navigation }) => {
   const { dueDate, setDueDate } = useContext(Context);
 
   const onChange = (event: Event, selectedDate: Date) => {

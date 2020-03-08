@@ -20,7 +20,11 @@ export default ({
 }: Props) =>
   <View style={styles.footer}>
     <TouchableOpacity
-      style={{ ...styles.cta, ...style, backgroundColor: disabled ? '#9ADCD766' : style.backgroundColor || '#9ADCD7' }}
+      style={[
+        styles.cta,
+        style,
+        { backgroundColor: disabled ? '#9ADCD766' : style.backgroundColor || '#9ADCD7' }
+      ]}
       disabled={disabled}
       onPress={onPress}
     >
@@ -29,15 +33,15 @@ export default ({
   </View>
 
 const styles = StyleSheet.create({
-  cta: {
-    alignItems: 'center',
-    width: '100%',
-    padding: 20
-  },
   footer: {
     position: 'absolute',
     left: 0,
     right: 0,
     bottom: 0
+  },
+  cta: {
+    alignItems: 'center',
+    width: '100%',
+    padding: 20
   }
 });
