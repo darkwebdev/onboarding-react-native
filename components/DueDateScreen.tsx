@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { ImageBackground, StyleSheet } from 'react-native';
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -6,21 +6,19 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import BottomBox from './BottomBox';
 import Subtitle from './Subtitle';
 import BottomButton from './BottomButton';
-import { RootStackParamList } from './screens';
+import { RootStackParamList } from '../screens';
+import Context from '../context';
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList, 'DueDate'>;
-  onDateChange: (date: Date) => void;
 }
 
-const DueDateScreen:FC<Props> = ({ navigation, onDateChange }) => {
-  const [date, setDate] = useState(new Date());
+// todo: limit dates to today->9month
+const DueDateScreen:FC<Props> = ({ navigation }) => {
+  const { dueDate, setDueDate } = useContext(Context);
 
   const onChange = (event: Event, selectedDate: Date) => {
-    if (selectedDate) {
-      setDate(selectedDate);
-      onDateChange(selectedDate);
-    }
+    setDueDate(selectedDate);
   };
 
   return <ImageBackground
@@ -29,11 +27,11 @@ const DueDateScreen:FC<Props> = ({ navigation, onDateChange }) => {
     <BottomBox>
       <Subtitle>Select your estimated due date</Subtitle>
       <DateTimePicker
-        value={date}
+        value={dueDate}
         onChange={onChange}
         style={styles.datePicker}
       />
-      <BottomButton onPress={() => navigation.navigate('ActivityLevel')}/>
+      <BottomButton onPress={() => { navigation.navigate('ActivityLevel')}} />
     </BottomBox>
   </ImageBackground>
 };

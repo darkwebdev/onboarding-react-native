@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, Switch, Text, View } from 'react-native';
+import { Goal } from '../model';
 
 type Props = {
   value: boolean;
   onChange: (value: boolean) => void;
-  text: string;
+  text: Goal;
 }
 
 export default ({ value, onChange, text }: Props) =>

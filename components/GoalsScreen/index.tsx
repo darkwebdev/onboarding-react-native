@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { ImageBackground, View, StyleSheet } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
@@ -6,36 +6,48 @@ import BottomBox from '../BottomBox';
 import Title from '../Title';
 import Subtitle from '../Subtitle';
 import BottomButton from '../BottomButton';
-import { RootStackParamList } from '../screens';
+import { RootStackParamList } from '../../screens';
 import SelectionItem from './SelectionItem';
+import Context, { Goal, goals } from '../../context';
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList, 'Goals'>;
 }
 
+type State = {
+  findWorkouts: boolean;
+  lessWeight: boolean;
+  prepareBirth: boolean;
+  feelRelaxed: boolean;
+}
+
+const defaultState: State = {
+  findWorkouts: false,
+  lessWeight: false,
+  prepareBirth: false,
+  feelRelaxed: false
+};
+
 const GoalsScreen:FC<Props> = ({ navigation }) => {
-  const [findWorkouts, setFindWorkouts] = useState(false);
-  const [lessWeight, setLessWeight] = useState(false);
-  const [prepareBirth, setPrepareBirth] = useState(false);
-  const [feelRelaxed, setFeelRelaxed] = useState(false);
+  const [{ findWorkouts, lessWeight, prepareBirth, feelRelaxed }, setState] = useState<State>(defaultState);
+  const { setGoals } = useContext(Context);
 
   const selectionProps = [{
     value: findWorkouts,
-    onChange: setFindWorkouts,
-    text: 'Find workouts for my pregnancy'
+    onChange: value => setState(state => ({...state, findWorkouts: value }))
   }, {
     value: lessWeight,
-    onChange: setLessWeight,
-    text: 'Not to gain unnecessary weight'
+    onChange: value => setState(state => ({...state, lessWeight: value }))
   }, {
     value: prepareBirth,
-    onChange: setPrepareBirth,
-    text: 'Prepare for birth'
+    onChange: value => setState(state => ({...state, prepareBirth: value }))
   }, {
     value: feelRelaxed,
-    onChange: setFeelRelaxed,
-    text: 'Feel more relaxed'
+    onChange: value => setState(state => ({...state, feelRelaxed: value }))
   }];
+
+  const selectedGoals = () =>
+    selectionProps.reduce((all, { value }, i) => [...all, value ? goals[i] : []], []);
 
 // todo: fix background to be aligned to top
   return <ImageBackground
@@ -45,17 +57,20 @@ const GoalsScreen:FC<Props> = ({ navigation }) => {
       <Title>What are your goals?</Title>
       <Subtitle>Help us tailor our program to your needs.</Subtitle>
       <View style={styles.selectionList}>
-        {selectionProps.map((props, i) =>
-          <SelectionItem {...props} key={i} />
+        {selectionProps.map(({ value, onChange }, i) =>
+          <SelectionItem value={value} onChange={onChange} text={goals[i]} key={i} />
         )}
       </View>
       <BottomButton
           disabled={!selectionProps.some(({ value }) => value === true)}
-          onPress={() => navigation.navigate('DueDate')}
+          onPress={() => {
+            setGoals(selectedGoals());
+            navigation.navigate('DueDate');
+          }}
       />
     </BottomBox>
   </ImageBackground>
-}
+};
 
 const styles = StyleSheet.create({
   bg: {
