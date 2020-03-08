@@ -1,9 +1,16 @@
 import React, { FC, useContext } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+
 import Context from '../context';
 import Title from './Title';
 import Subtitle from './Subtitle';
 import Screen, { ScreenProps } from './Screen';
+
+const dateOptions = {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+};
 
 const SuccessScreen: FC<ScreenProps> = ({}) => {
   const { goals, dueDate, activityLevel } = useContext(Context);
@@ -11,19 +18,29 @@ const SuccessScreen: FC<ScreenProps> = ({}) => {
   return <Screen>
     <Title>Is everything correct?</Title>
     <View>
-      <Subtitle>Chosen Goals</Subtitle>
-      {goals.map(goal => <Text>{goal}</Text>)}
+      <View style={styles.result}>
+        <Subtitle>Chosen Goals</Subtitle>
+        {goals.map(goal => <Text>✓ {goal}</Text>)}
+      </View>
 
-      <Subtitle>Estimated Due Date</Subtitle>
-      <Text>{String(new Date(dueDate))}</Text>
+      <View style={styles.result}>
+        <Subtitle>Estimated Due Date</Subtitle>
+        <Text>{new Date(dueDate).toLocaleDateString(undefined, dateOptions)}</Text>
+      </View>
 
-      <Subtitle>Your Activity Level</Subtitle>
-      <Text>{activityLevel}</Text>
+      <View style={styles.result}>
+        <Subtitle>Chosen Activity Level</Subtitle>
+        <Text>{activityLevel}</Text>
+      </View>
     </View>
   </Screen>
 };
 
 const styles = StyleSheet.create({
+  result: {
+    marginLeft: -60,
+    marginBottom: 30
+  }
 });
 
 export default SuccessScreen;

@@ -4,11 +4,13 @@ import { StyleSheet, View } from 'react-native';
 import Title from '../Title';
 import Subtitle from '../Subtitle';
 import BottomButton from '../BottomButton';
-import SelectionItem from './SelectionItem';
+import GoalSwitch from './GoalSwitch';
 import Context, { goals } from '../../context';
 import Screen, { ScreenProps } from '../Screen';
 
-type GoalIndex = 'findWorkouts' | 'lessWeight' | 'prepareBirth' | 'feelRelaxed';
+const goalIndexes = [ 'findWorkouts', 'lessWeight', 'prepareBirth', 'feelRelaxed'] as const;
+type GoalIndexType = typeof goalIndexes;
+type GoalIndex = GoalIndexType[number];
 
 type State = {
   [index in GoalIndex]?: boolean;
@@ -18,45 +20,33 @@ const GoalsScreen: FC<ScreenProps> = ({ navigation }) => {
   const [{ findWorkouts, lessWeight, prepareBirth, feelRelaxed }, setState] = useState<State>({});
   const { setGoals } = useContext(Context);
 
-  const onChange = (goal: keyof State) => (value: boolean) => {
+  const onGoalChange = (goal: keyof State) => (value: boolean) => {
     setState(state => ({ ...state, [goal]: value }));
   };
 
-  const selectionProps = [{
-    value: findWorkouts,
-    onChange: onChange('findWorkouts')
-  }, {
-    value: lessWeight,
-    onChange: onChange('lessWeight')
-  }, {
-    value: prepareBirth,
-    onChange: onChange('prepareBirth')
-  }, {
-    value: feelRelaxed,
-    onChange: onChange('feelRelaxed')
-  }];
+  const goalSwitches = [ findWorkouts, lessWeight, prepareBirth, feelRelaxed ];
 
-  const selectedGoals = () =>
-    selectionProps.reduce((all, { value }, i) => [...all, value ? goals[i] : []], []);
-
-// todo: fix background to be aligned to top
   return <Screen>
     <Title>What are your goals?</Title>
     <Subtitle>Help us tailor our program to your needs.</Subtitle>
     <View style={styles.selectionList}>
-      {selectionProps.map(({ value, onChange }, i) =>
-        <SelectionItem value={value} onChange={onChange} text={goals[i]} key={i} />
+      {goalSwitches.map((goal, i) =>
+        <GoalSwitch value={goal} onChange={onGoalChange(goalIndexes[i])} text={goals[i]} key={i} />
       )}
     </View>
     <BottomButton
-        disabled={!selectionProps.some(({ value }) => value === true)}
+        disabled={!goalSwitches.some(goal => goal)}
         onPress={() => {
-          setGoals(selectedGoals());
+          setGoals(selectedGoals(goalSwitches));
           navigation.navigate('DueDate');
         }}
     />
   </Screen>
 };
+
+function selectedGoals(goalSwitches) {
+  return goalSwitches.reduce((all, goal, i) => [...all, goal ? goals[i] : []], []);
+}
 
 const styles = StyleSheet.create({
   selectionList: {

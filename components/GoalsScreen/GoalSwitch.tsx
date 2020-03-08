@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Switch, Text, View } from 'react-native';
-import { Goal } from '../model';
+import { Goal } from '../../context';
 
 type Props = {
   value: boolean;

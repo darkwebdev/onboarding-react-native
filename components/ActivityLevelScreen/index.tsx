@@ -23,7 +23,6 @@ const ActivityLevelScreen: FC<ScreenProps> = ({ navigation }) => {
       <RocketSlider value={level} onChange={setLevel}/>
       <Text style={styles.levelText}>{activityLevel}</Text>
       <BottomButton
-        style={styles.cta}
         onPress={() => { navigation.navigate('Success'); }}
       />
     </View>
@@ -32,7 +31,6 @@ const ActivityLevelScreen: FC<ScreenProps> = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   bg: {
-    position: 'absolute',
     top: '30%',
     height: '40%'
   },
@@ -44,9 +42,6 @@ const styles = StyleSheet.create({
   },
   levelText: {
     fontSize: 20
-  },
-  cta: {
-    // bottom: -150
   }
 });
 

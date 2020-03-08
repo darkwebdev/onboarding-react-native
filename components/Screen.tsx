@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   img: {
-    position: 'absolute',
+    position: 'absolute'
   }
 });
 

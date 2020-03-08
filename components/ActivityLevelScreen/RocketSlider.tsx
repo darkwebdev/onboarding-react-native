@@ -20,11 +20,13 @@ const RocketSlider: FC<Props> = ({ value, onChange }) =>
       maximumTrackTintColor="#DEF4F2"
       onValueChange={onChange}
       value={value}
-      thumbImage={require('../../assets/rocket.png')}
+      thumbImage={require('../../assets/rocket-hor.png')}
     />
-    <Text style={styles.levelNumber}>{value}</Text>
+    <Text style={[
+      styles.levelNumber,
+      { bottom: 100+(value-1)*88 }
+    ]}>{value}</Text>
   </View>;
-
 
 const styles = StyleSheet.create({
   scale: {
@@ -33,7 +35,6 @@ const styles = StyleSheet.create({
   },
   levelNumber: {
     position: 'absolute',
-    top: 25,
     alignSelf: 'center',
     fontSize: 20
   }
