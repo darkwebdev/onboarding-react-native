@@ -1,12 +1,11 @@
 import React, { FC, useContext, useState } from 'react';
-import { ImageBackground, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-import BottomBox from './BottomBox';
 import Subtitle from './Subtitle';
 import BottomButton from './BottomButton';
-import { RootStackParamList } from '../screens';
+import Screen, { RootStackParamList } from './Screen';
 import Context from '../context';
 
 type Props = {
@@ -21,30 +20,18 @@ const DueDateScreen:FC<Props> = ({ navigation }) => {
     setDueDate(selectedDate);
   };
 
-  return <ImageBackground
-    source={require('../assets/background_image.png')}
-    style={styles.bg}>
-    <BottomBox>
-      <Subtitle>Select your estimated due date</Subtitle>
-      <DateTimePicker
-        value={dueDate}
-        onChange={onChange}
-        style={styles.datePicker}
-      />
-      <BottomButton onPress={() => { navigation.navigate('ActivityLevel')}} />
-    </BottomBox>
-  </ImageBackground>
+  return <Screen>
+    <Subtitle>Select your estimated due date</Subtitle>
+    <DateTimePicker
+      value={dueDate}
+      onChange={onChange}
+      style={styles.datePicker}
+    />
+    <BottomButton onPress={() => { navigation.navigate('ActivityLevel')}} />
+  </Screen>
 };
 
 const styles = StyleSheet.create({
-  bg: {
-    width: '100%',
-    height: '100%'
-  },
-  selectionList: {
-    width: '100%',
-    marginBottom: 60
-  },
   datePicker: {
     width:'100%'
   }

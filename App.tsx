@@ -6,7 +6,7 @@ import GoalsScreen from './components/GoalsScreen';
 import DueDateScreen from './components/DueDateScreen';
 import ActivityLevelScreen from './components/ActivityLevelScreen';
 import SuccessScreen from './components/SuccessScreen';
-import { RootStackParamList } from './components/screens';
+import { RootStackParamList } from './components/Screen';
 
 const screenOptions = {
   title: null
