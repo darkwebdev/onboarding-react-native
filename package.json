@@ -1,4 +1,7 @@
 {
+  "name": "onboarding",
+  "version": "1.0.0",
+  "description": "Sample onboarding React Native App",
   "scripts": {
     "android": "react-native run-android",
     "android-clean": "cd android; ./gradlew clean; cd ..",
@@ -45,8 +48,5 @@
     "tslint-react": "^4.2.0",
     "tslint-react-hooks": "^2.2.1",
     "typescript": "~3.6.3"
-  },
-  "jest": {
-    "preset": "react-native"
   }
 }
