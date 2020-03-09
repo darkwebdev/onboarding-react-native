@@ -1,6 +1,6 @@
 import React, { FC, useContext } from 'react';
 import { StyleSheet } from 'react-native';
-import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
+import DatePicker from 'react-native-date-picker';
 
 import Subtitle from './Subtitle';
 import BottomButton from './BottomButton';
@@ -14,28 +14,17 @@ const todayPlus9Month: Date = new Date(Date.now() + MsIn9Months);
 const DueDateScreen: FC<ScreenProps> = ({ navigation }) => {
   const { dueDate = today, setDueDate } = useContext(Context);
 
-  const onChange = (event: Event, selectedDate: Date | undefined) => {
-    setDueDate(selectedDate || today);
-  };
-
   return <Screen>
     <Subtitle>Select your estimated due date</Subtitle>
-    <DateTimePicker
-      value={dueDate}
+    <DatePicker
+      mode="date"
+      date={dueDate}
       minimumDate={today}
       maximumDate={todayPlus9Month}
-      display="spinner"
-      onChange={onChange}
-      style={styles.datePicker}
+      onDateChange={setDueDate}
     />
     <BottomButton onPress={() => { navigation.navigate('ActivityLevel'); }} />
   </Screen>;
 };
-
-const styles = StyleSheet.create({
-  datePicker: {
-    width:'100%'
-  }
-});
 
 export default DueDateScreen;

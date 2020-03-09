@@ -26,7 +26,8 @@ DerivedData
 .gradle
 local.properties
 *.iml
-/build/
+android/app/build/
+android/build/
 
 # BUCK
 buck-out/
