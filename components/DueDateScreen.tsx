@@ -7,18 +7,21 @@ import BottomButton from './BottomButton';
 import Screen, { ScreenProps } from './Screen';
 import Context from '../context';
 
-// todo: limit dates to today->9month
+const MsIn9Months: number = 9 * 31 * 24 * 60 * 60 * 1000;
+
 const DueDateScreen: FC<ScreenProps> = ({ navigation }) => {
   const { dueDate, setDueDate } = useContext(Context);
 
-  const onChange = (event: Event, selectedDate: Date) => {
-    setDueDate(selectedDate);
+  const onChange = (event: Event, selectedDate: Date | undefined) => {
+    setDueDate(selectedDate!);
   };
 
   return <Screen>
     <Subtitle>Select your estimated due date</Subtitle>
     <DateTimePicker
       value={dueDate!}
+      minimumDate={new Date()}
+      maximumDate={new Date(Date.now() + MsIn9Months)}
       onChange={onChange}
       style={styles.datePicker}
     />
