@@ -7,10 +7,7 @@ import BottomButton from '../BottomButton';
 import GoalSwitch from './GoalSwitch';
 import Context, { Goals } from '../../context';
 import Screen, { ScreenProps } from '../Screen';
-
-type State = {
-  [key in Goals]?: boolean;
-};
+import { selectedGoals, State } from './utils';
 
 const GoalsScreen: FC<ScreenProps> = ({ navigation }) => {
   const [state, setState] = useState<State>({});
@@ -30,7 +27,7 @@ const GoalsScreen: FC<ScreenProps> = ({ navigation }) => {
     <View style={styles.selectionList}>
       {Object.entries(Goals).map(([key, text]) =>
         <GoalSwitch
-          value={state[key]}
+          value={!!state[key as Goals]}
           onChange={onGoalChange(key as Goals)}
           text={text}
           key={key}
@@ -41,14 +38,8 @@ const GoalsScreen: FC<ScreenProps> = ({ navigation }) => {
         disabled={!Object.values(state).some(goal => goal)}
         onPress={() => { navigation.navigate('DueDate'); }}
     />
-  </Screen>
+  </Screen>;
 };
-
-function selectedGoals(state: State) {
-  return Object.entries(Goals).reduce((all, [key, text]) =>
-    state[key] ? [...all, text] : all,
-  []);
-}
 
 const styles = StyleSheet.create({
   selectionList: {

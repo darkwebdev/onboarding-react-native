@@ -6,7 +6,7 @@ type Props = {
   value: boolean;
   onChange: (value: boolean) => void;
   text: Goal;
-}
+};
 
 const GoalSwitch = ({ value, onChange, text }: Props) =>
   <View style={styles.selection}>
@@ -14,16 +14,16 @@ const GoalSwitch = ({ value, onChange, text }: Props) =>
       value={value}
       onValueChange={onChange}
       ios_backgroundColor="#9ADCD766"
-      trackColor={{ false: "#9ADCD766", true: "#9ADCD7" }}
+      trackColor={{ false: '#9ADCD766', true: '#9ADCD7' }}
     />
     <Text style={styles.selectionText}>{text}</Text>
-  </View>
+  </View>;
 
 const styles = StyleSheet.create({
   selection: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   selectionText: {
     padding: 20,

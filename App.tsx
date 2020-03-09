@@ -1,14 +1,14 @@
 import 'react-native-gesture-handler';
-import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import  React, { FC, useContext, useState } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
 import GoalsScreen from './components/GoalsScreen';
 import DueDateScreen from './components/DueDateScreen';
 import ActivityLevelScreen from './components/ActivityLevelScreen';
 import SuccessScreen from './components/SuccessScreen';
 import { RootStackParamList } from './components/Screen';
 import Context, { Goals, Level } from './context';
-import { FC, useContext, useState } from 'react';
 
 const screenOptions = {
   title: null
@@ -37,7 +37,7 @@ const App: FC = () => {
         <Stack.Screen name="Success" component={SuccessScreen} options={screenOptions} />
       </Stack.Navigator>
     </NavigationContainer>
-  </Context.Provider>
+  </Context.Provider>;
 };
 
 export default App;

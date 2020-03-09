@@ -18,12 +18,12 @@ const DueDateScreen: FC<ScreenProps> = ({ navigation }) => {
   return <Screen>
     <Subtitle>Select your estimated due date</Subtitle>
     <DateTimePicker
-      value={dueDate}
+      value={dueDate!}
       onChange={onChange}
       style={styles.datePicker}
     />
-    <BottomButton onPress={() => { navigation.navigate('ActivityLevel')}} />
-  </Screen>
+    <BottomButton onPress={() => { navigation.navigate('ActivityLevel'); }} />
+  </Screen>;
 };
 
 const styles = StyleSheet.create({

@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 export enum Goals {
-  FindWourkouts = 'Find workouts for my pregnancy',
+  FindWorkouts = 'Find workouts for my pregnancy',
   LessWeight = 'Not to gain unnecessary weight',
   PrepareBirth = 'Prepare for birth',
   FeelRelaxed = 'Feel more relaxed'
@@ -24,7 +24,7 @@ type Context = {
   setDueDate: (date: Date) => void;
   activityLevel?: Level;
   setActivityLevel: (level: Level) => void;
-}
+};
 
 const Context = createContext<Context>({
   goals: [],

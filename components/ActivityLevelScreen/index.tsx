@@ -14,7 +14,7 @@ const ActivityLevelScreen: FC<ScreenProps> = ({ navigation }) => {
   const [ level, setLevel ] = useState(DefaultLevel);
 
   useEffect(() => {
-    setActivityLevel(levels[level-1]);
+    setActivityLevel(levels[level - 1]);
   }, [level]);
 
   return <Screen bg={require('../../assets/clouds.png')} noBox={true} style={styles.bg}>

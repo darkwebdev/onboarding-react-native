@@ -8,7 +8,7 @@ type Props = {
   onPress: () => void;
   disabled?: boolean;
   children?: ReactNode;
-}
+};
 
 export default ({
   size= 20,
@@ -30,7 +30,7 @@ export default ({
     >
       <Text style={{ color, fontSize: size }}>{children}</Text>
     </TouchableOpacity>
-  </View>
+  </View>;
 
 const styles = StyleSheet.create({
   footer: {

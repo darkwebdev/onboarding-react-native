@@ -7,12 +7,12 @@ type Props = {
   onChange: (level: number) => void;
   width?: number | string;
   height?: number | string;
-}
+};
 
+// todo: show custom slider track
 // todo: show rocket on android
 const RocketSlider: FC<Props> = ({ value, width = 500, height= 500, onChange }) =>
   <View style={{ position: 'relative' }}>
-    {/*<Image source={require('../../assets/scale.png')} style={styles.scale} />*/}
     <Slider
       style={[
         styles.slider,
@@ -27,10 +27,9 @@ const RocketSlider: FC<Props> = ({ value, width = 500, height= 500, onChange }) 
       value={value}
       thumbImage={require('../../assets/rocket-hor.png')}
     />
-    <Text style={[
-      styles.levelNumber,
-      { bottom: 200+(value-1)*38 }
-    ]}>{value}</Text>
+    <Text style={[styles.levelNumber, { bottom: 200 + (value - 1) * 38 }]}>
+      {value}
+    </Text>
   </View>;
 
 const styles = StyleSheet.create({

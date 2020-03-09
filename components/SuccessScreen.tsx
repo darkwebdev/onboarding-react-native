@@ -20,7 +20,9 @@ const SuccessScreen: FC<ScreenProps> = ({}) => {
     <View>
       <View style={styles.result}>
         <Subtitle>Chosen Goals</Subtitle>
-        {goals.map(goal => <Text>✓ {goal}</Text>)}
+        {goals.map((goal, i) =>
+          <Text key={i}>✓ {goal}</Text>
+        )}
       </View>
 
       <View style={styles.result}>
@@ -33,7 +35,7 @@ const SuccessScreen: FC<ScreenProps> = ({}) => {
         <Text>{activityLevel}</Text>
       </View>
     </View>
-  </Screen>
+  </Screen>;
 };
 
 const styles = StyleSheet.create({

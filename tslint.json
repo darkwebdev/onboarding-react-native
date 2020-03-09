@@ -1,0 +1,31 @@
+{
+  "defaultSeverity": "error",
+  "extends": [ "tslint-config-airbnb", "tslint-eslint-rules", "tslint-react", "tslint-react-hooks" ],
+  "jsRules": { },
+  "rules": {
+    "max-line-length": false,
+    "array-bracket-spacing": false,
+    "trailing-comma": [ true, { "multiline": "never", "singleline": "never" } ],
+    "strict-boolean-expressions": [ false, "allow-undefined-union", "allow-string", "allow-number" ],
+    "no-console": [ true, "debug", "info", "log" ],
+    "object-shorthand-properties-first": false,
+    "ter-arrow-body-style": [ true, "as-needed" ],
+    "ter-arrow-parens": [ true, "as-needed" ],
+    "ter-max-len": [ true, 120, 2, {
+      "ignoreUrls": true,
+      "ignoreComments": true
+    } ],
+    "no-var-keyword": true,
+    "import-name": false,
+    "no-consecutive-blank-lines": [ true, 2 ],
+    "space-before-function-paren": false,
+    "no-trailing-whitespace": [ true, "ignore-comments", "ignore-blank-lines" ],
+    // This rule is here for now because of https://github.com/palantir/tslint-react/issues/120
+    "variable-name": [ true, "ban-keywords", "check-format", "allow-pascal-case"],
+    "align": [ true, "statements", "members", "elements" ],
+    "jsx-no-lambda": false,
+    "jsx-boolean-value": false,
+    "jsx-wrap-multiline": false,
+    "jsx-no-multiline-js": false
+  }
+}

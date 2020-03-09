@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 export default ({ children }) =>
-  <View style={styles.default}>{children}</View>
+  <View style={styles.default}>{children}</View>;
 
 const styles = StyleSheet.create({
   default: {
