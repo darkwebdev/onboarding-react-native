@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, Switch, Text, View } from 'react-native';
-import { Goal } from '../../context';
+import { Goals } from '../../context';
 
 type Props = {
   value: boolean;
   onChange: (value: boolean) => void;
-  text: Goal;
+  text: Goals;
 };
 
 const GoalSwitch = ({ value, onChange, text }: Props) =>
