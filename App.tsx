@@ -7,7 +7,7 @@ import DueDateScreen from './components/DueDateScreen';
 import ActivityLevelScreen from './components/ActivityLevelScreen';
 import SuccessScreen from './components/SuccessScreen';
 import { RootStackParamList } from './components/Screen';
-import Context, { Goal, Level } from './context';
+import Context, { Goals, Level } from './context';
 import { FC, useContext, useState } from 'react';
 
 const screenOptions = {
@@ -18,7 +18,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 const App: FC = () => {
   const context = useContext(Context);
-  const [goals, setGoals] = useState<Goal[]>(context.goals);
+  const [goals, setGoals] = useState<Goals[]>(context.goals);
   const [dueDate, setDueDate] = useState<Date>(context.dueDate);
   const [activityLevel, setActivityLevel] = useState<Level>(context.activityLevel);
 

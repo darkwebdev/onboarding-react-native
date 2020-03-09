@@ -20,7 +20,12 @@ const ActivityLevelScreen: FC<ScreenProps> = ({ navigation }) => {
   return <Screen bg={require('../../assets/clouds.png')} noBox={true} style={styles.bg}>
     <View style={styles.box}>
       <Title>To get your perfect workouts, tell us your activity level!</Title>
-      <RocketSlider value={level} onChange={setLevel}/>
+      <RocketSlider
+        value={level}
+        width={500}
+        height={300}
+        onChange={setLevel}
+      />
       <Text style={styles.levelText}>{activityLevel}</Text>
       <BottomButton
         onPress={() => { navigation.navigate('Success'); }}
@@ -37,8 +42,9 @@ const styles = StyleSheet.create({
   box: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingVertical: 90
+    justifyContent: 'space-around',
+    paddingTop: 90,
+    paddingBottom: 120
   },
   levelText: {
     fontSize: 20

@@ -1,13 +1,11 @@
 import { createContext } from 'react';
 
-export const goals = [
-  'Find workouts for my pregnancy',
-  'Not to gain unnecessary weight',
-  'Prepare for birth',
-  'Feel more relaxed'
-] as const;
-type GoalType = typeof goals;
-export type Goal = GoalType[number];
+export enum Goals {
+  FindWourkouts = 'Find workouts for my pregnancy',
+  LessWeight = 'Not to gain unnecessary weight',
+  PrepareBirth = 'Prepare for birth',
+  FeelRelaxed = 'Feel more relaxed'
+}
 
 export const levels = [
   'I don’t exercise.',
@@ -20,8 +18,8 @@ type LevelType = typeof levels;
 export type Level = LevelType[number];
 
 type Context = {
-  goals: Goal[];
-  setGoals: (goals: Goal[]) => void;
+  goals: Goals[];
+  setGoals: (goals: Goals[]) => void;
   dueDate?: Date;
   setDueDate: (date: Date) => void;
   activityLevel?: Level;

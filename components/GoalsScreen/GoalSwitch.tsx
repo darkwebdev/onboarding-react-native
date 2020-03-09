@@ -8,7 +8,7 @@ type Props = {
   text: Goal;
 }
 
-export default ({ value, onChange, text }: Props) =>
+const GoalSwitch = ({ value, onChange, text }: Props) =>
   <View style={styles.selection}>
     <Switch
       value={value}
@@ -30,3 +30,5 @@ const styles = StyleSheet.create({
     fontSize: 20
   }
 });
+
+export default GoalSwitch;

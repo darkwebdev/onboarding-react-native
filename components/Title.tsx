@@ -6,7 +6,9 @@ export default ({ children }) =>
 
 const styles = StyleSheet.create({
   default: {
-    fontSize: 30,
+    paddingHorizontal: 10,
+    textAlign: 'center',
+    fontSize: 25,
     marginBottom: 20
   }
 });

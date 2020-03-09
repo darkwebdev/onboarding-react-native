@@ -1,30 +1,35 @@
 import React, { FC } from 'react';
-import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Slider from '@react-native-community/slider';
 
 type Props = {
   value: number;
   onChange: (level: number) => void;
+  width?: number | string;
+  height?: number | string;
 }
 
-// todo: reotate rocket 90deg, show rocket on android
-const RocketSlider: FC<Props> = ({ value, onChange }) =>
-  <View>
+// todo: show rocket on android
+const RocketSlider: FC<Props> = ({ value, width = 500, height= 500, onChange }) =>
+  <View style={{ position: 'relative' }}>
     {/*<Image source={require('../../assets/scale.png')} style={styles.scale} />*/}
     <Slider
-      style={{ width: 500, height: 500, transform: [ { rotate: "-90deg" } ] }}
+      style={[
+        styles.slider,
+        { width: height, height: width }
+      ]}
       minimumValue={1}
       maximumValue={5}
       step={1}
       minimumTrackTintColor="#FFFFFF"
-      maximumTrackTintColor="#DEF4F2"
+      maximumTrackTintColor="#9ADCD7"
       onValueChange={onChange}
       value={value}
       thumbImage={require('../../assets/rocket-hor.png')}
     />
     <Text style={[
       styles.levelNumber,
-      { bottom: 100+(value-1)*88 }
+      { bottom: 200+(value-1)*38 }
     ]}>{value}</Text>
   </View>;
 
@@ -33,10 +38,16 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignSelf: 'center'
   },
+  slider: {
+    transform: [{
+      rotate: '-90deg'
+    }]
+  },
   levelNumber: {
     position: 'absolute',
+    paddingRight: 2,
     alignSelf: 'center',
-    fontSize: 20
+    fontSize: 18
   }
 });
 
