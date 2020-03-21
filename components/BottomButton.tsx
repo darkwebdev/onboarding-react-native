@@ -1,23 +1,23 @@
-import React, { ReactNode } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { TouchableOpacity, Text, StyleSheet, ViewStyle, View } from 'react-native';
 
 type Props = {
   size?: number;
   color?: string;
   style?: ViewStyle;
-  onPress: () => void;
+  onPress?: () => void;
   disabled?: boolean;
   children?: ReactNode;
 };
 
-export default ({
+const BottomButton: FC<Props> = ({
   size= 20,
   color = '#FFFFFF',
   style = {},
   disabled,
-  onPress,
+  onPress = () => {},
   children= 'Continue'
-}: Props) =>
+}) =>
   <View style={styles.footer}>
     <TouchableOpacity
       style={[
@@ -45,3 +45,5 @@ const styles = StyleSheet.create({
     padding: 20
   }
 });
+
+export default BottomButton;

@@ -2,7 +2,7 @@ import React, { FC, useContext, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import BottomButton from '../BottomButton';
-import Title from '../Title';
+import SubTitle from '../SubTitle';
 import RocketSlider from './RocketSlider';
 import Context, { levels } from '../../context';
 import Screen, { ScreenProps } from '../Screen';
@@ -19,11 +19,9 @@ const ActivityLevelScreen: FC<ScreenProps> = ({ navigation }) => {
 
   return <Screen bg={require('../../assets/clouds.png')} noBox={true} style={styles.bg}>
     <View style={styles.box}>
-      <Title>To get your perfect workouts, tell us your activity level!</Title>
+      <SubTitle>To get your perfect workouts, tell us your activity level!</SubTitle>
       <RocketSlider
         value={level}
-        width={500}
-        height={300}
         onChange={setLevel}
       />
       <Text style={styles.levelText}>{activityLevel}</Text>
@@ -42,9 +40,12 @@ const styles = StyleSheet.create({
   box: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-around',
-    paddingTop: 90,
-    paddingBottom: 120
+    justifyContent: 'space-between',
+    paddingTop: '12%',
+    paddingBottom: 70
+  },
+  title: {
+    textAlign: 'center'
   },
   levelText: {
     fontSize: 20

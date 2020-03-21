@@ -1,7 +1,11 @@
 import { StyleSheet, Text } from 'react-native';
-import React from 'react';
+import React, { FC, ReactNode } from 'react';
 
-export default ({ children }) =>
+type Props = {
+  children: ReactNode;
+};
+
+const Title: FC<Props> = ({ children }) =>
   <Text style={styles.default}>{children}</Text>;
 
 const styles = StyleSheet.create({
@@ -12,3 +16,5 @@ const styles = StyleSheet.create({
     marginBottom: 20
   }
 });
+
+export default Title;

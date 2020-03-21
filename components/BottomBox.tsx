@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { FC, ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-export default ({ children }) =>
+type Props = {
+  children: ReactNode;
+};
+
+const BottomBox: FC<Props> = ({ children }) =>
   <View style={styles.default}>{children}</View>;
 
 const styles = StyleSheet.create({
@@ -17,3 +21,5 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.9)'
   }
 });
+
+export default BottomBox;

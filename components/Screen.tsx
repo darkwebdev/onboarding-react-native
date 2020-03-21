@@ -1,7 +1,8 @@
 import React, { FC, ReactNode } from 'react';
 import { ImageBackground, StyleSheet, ImageStyle, ImageSourcePropType } from 'react-native';
-import BottomBox from './BottomBox';
 import { StackNavigationProp } from '@react-navigation/stack';
+import BottomBox from './BottomBox';
+import { useSafeArea } from 'react-native-safe-area-context';
 
 export type RootStackParamList = {
   Goals: undefined;
@@ -26,14 +27,22 @@ const Screen: FC<Props> = ({
   noBox = false,
   style = {},
   children
-}) =>
-  <ImageBackground
+}) => {
+  const { top, right, bottom, left } = useSafeArea();
+  const padding = {
+    paddingTop: top,
+    paddingRight: right,
+    paddingLeft: left
+  };
+
+  return <ImageBackground
     source={bg}
-    style={styles.bg}
+    style={{ ...styles.bg, ...padding }}
     imageStyle={[styles.img, style]}
   >
     {noBox ? children : <BottomBox>{children}</BottomBox>}
   </ImageBackground>;
+};
 
 const styles = StyleSheet.create({
   bg: {

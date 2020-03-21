@@ -3,8 +3,9 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import Context from '../context';
 import Title from './Title';
-import Subtitle from './Subtitle';
+import SubTitle from './SubTitle';
 import Screen, { ScreenProps } from './Screen';
+import BottomButton from './BottomButton';
 
 const dateOptions = {
   year: 'numeric',
@@ -19,22 +20,25 @@ const SuccessScreen: FC<ScreenProps> = ({}) => {
     <Title>Is everything correct?</Title>
     <View>
       <View style={styles.result}>
-        <Subtitle>Chosen Goals</Subtitle>
+        <SubTitle>Chosen Goals</SubTitle>
         {goals.map((goal, i) =>
-          <Text key={i}>✓ {goal}</Text>
+          <Text key={i} style={styles.text}>✓ {goal}</Text>
         )}
       </View>
 
       <View style={styles.result}>
-        <Subtitle>Estimated Due Date</Subtitle>
-        <Text>{new Date(dueDate).toLocaleDateString(undefined, dateOptions)}</Text>
+        <SubTitle>Estimated Due Date</SubTitle>
+        <Text style={styles.text}>{new Date(dueDate).toLocaleDateString(undefined, dateOptions)}</Text>
       </View>
 
       <View style={styles.result}>
-        <Subtitle>Chosen Activity Level</Subtitle>
-        <Text>{activityLevel}</Text>
+        <SubTitle>Chosen Activity Level</SubTitle>
+        <Text style={styles.text}>{activityLevel}</Text>
       </View>
     </View>
+    <BottomButton
+      disabled={true}
+    />
   </Screen>;
 };
 
@@ -42,6 +46,9 @@ const styles = StyleSheet.create({
   result: {
     marginLeft: -60,
     marginBottom: 30
+  },
+  text: {
+    textAlign: 'center'
   }
 });
 

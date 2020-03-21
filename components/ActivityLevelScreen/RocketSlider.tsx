@@ -1,33 +1,35 @@
 import React, { FC } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Slider from '@react-native-community/slider';
+import { Image, StyleSheet, Text, View } from 'react-native';
+import Slider from '@ptomasroos/react-native-multi-slider';
 
 type Props = {
   value: number;
   onChange: (level: number) => void;
-  width?: number | string;
-  height?: number | string;
 };
 
+const levelPosition = (value: number): number => (value - 1) * 70 - 88;
+
+const customMarker = () => <Image source={require('../../assets/rocket.png')} />;
+
 // todo: show custom slider track
-// todo: show rocket on android
-const RocketSlider: FC<Props> = ({ value, width = 500, height= 500, onChange }) =>
+const RocketSlider: FC<Props> = ({ value, onChange }) =>
   <View style={{ position: 'relative' }}>
     <Slider
-      style={[
-        styles.slider,
-        { width: height, height: width }
-      ]}
-      minimumValue={1}
-      maximumValue={5}
+      style={styles.slider}
+      vertical
+      min={1}
+      max={5}
       step={1}
-      minimumTrackTintColor="#FFFFFF"
-      maximumTrackTintColor="#9ADCD7"
-      onValueChange={onChange}
-      value={value}
-      thumbImage={require('../../assets/rocket-hor.png')}
+      snapped
+      // minimumTrackTintColor="#FFFFFF"
+      // maximumTrackTintColor="#9ADCD7"
+      onValuesChange={([v]) => onChange(v)}
+      values={[value]}
+      customMarker={customMarker}
+      // thumbImage={require('../../assets/rocket-hor.png')}
+      imageBackgroundSource={require('../../assets/scale.png')}
     />
-    <Text style={[styles.levelNumber, { bottom: 200 + (value - 1) * 38 }]}>
+    <Text style={[styles.levelNumber, { bottom: levelPosition(value) }]}>
       {value}
     </Text>
   </View>;
@@ -38,9 +40,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   slider: {
-    transform: [{
-      rotate: '-90deg'
-    }]
+    width: '100%',
+    height: '100%'
   },
   levelNumber: {
     position: 'absolute',

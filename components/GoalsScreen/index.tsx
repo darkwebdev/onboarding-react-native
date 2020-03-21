@@ -2,7 +2,7 @@ import React, { FC, useContext, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import Title from '../Title';
-import Subtitle from '../Subtitle';
+import SubTitle from '../SubTitle';
 import BottomButton from '../BottomButton';
 import GoalSwitch from './GoalSwitch';
 import Context, { Goals } from '../../context';
@@ -23,7 +23,7 @@ const GoalsScreen: FC<ScreenProps> = ({ navigation }) => {
 
   return <Screen>
     <Title>What are your goals?</Title>
-    <Subtitle>Help us tailor our program to your needs.</Subtitle>
+    <SubTitle>Help us tailor our program to your needs.</SubTitle>
     <View style={styles.selectionList}>
       {Object.entries(Goals).map(([key, text]) =>
         <GoalSwitch

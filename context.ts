@@ -20,9 +20,9 @@ export type Level = LevelType[number];
 type Context = {
   goals: Goals[];
   setGoals: (goals: Goals[]) => void;
-  dueDate?: Date;
+  dueDate: Date;
   setDueDate: (date: Date) => void;
-  activityLevel?: Level;
+  activityLevel: Level;
   setActivityLevel: (level: Level) => void;
 };
 
@@ -31,7 +31,7 @@ const Context = createContext<Context>({
   setGoals: () => {},
   dueDate: new Date(),
   setDueDate: () => {},
-  activityLevel: undefined,
+  activityLevel: levels[0],
   setActivityLevel: () => {}
 });
 

@@ -5,6 +5,9 @@
   "scripts": {
     "android": "react-native run-android",
     "android-clean": "cd android; ./gradlew clean; cd ..",
+    "android-list": "emulator -list-avds",
+    "android-nexus4": "emulator -avd Nexus_4_API_29 &",
+    "android-nexus5": "emulator -avd Nexus_5X_API_29_x86 &",
     "ios": "react-native run-ios",
     "ios-8": "react-native run-ios --simulator='iPhone 8'",
     "ios-pods": "cd ios; pod install; cd ..",
@@ -15,8 +18,8 @@
     "postinstall": "jetify"
   },
   "dependencies": {
+    "@ptomasroos/react-native-multi-slider": "^2.2.0",
     "@react-native-community/masked-view": "^0.1.7",
-    "@react-native-community/slider": "^2.0.8",
     "@react-navigation/native": "^5.0.8",
     "@react-navigation/stack": "^5.1.0",
     "react": "~16.9.0",
@@ -34,6 +37,7 @@
   "devDependencies": {
     "@babel/core": "~7.6.0",
     "@types/jest": "^25.1.4",
+    "@types/ptomasroos__react-native-multi-slider": "^0.0.1",
     "@types/react": "~16.9.0",
     "@types/react-native": "~0.60.23",
     "babel-jest": "~24.9.0",
