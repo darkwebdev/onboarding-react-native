@@ -28,7 +28,7 @@ const Screen: FC<Props> = ({
   style = {},
   children
 }) => {
-  const { top, right, bottom, left } = useSafeArea();
+  const { top, right, left } = useSafeArea();
   const padding = {
     paddingTop: top,
     paddingRight: right,
@@ -37,7 +37,7 @@ const Screen: FC<Props> = ({
 
   return <ImageBackground
     source={bg}
-    style={{ ...styles.bg, ...padding }}
+    style={[styles.bg, padding]}
     imageStyle={[styles.img, style]}
   >
     {noBox ? children : <BottomBox>{children}</BottomBox>}

@@ -1277,21 +1277,6 @@
   resolved "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.3.tgz#2ab0d5da2e5815f94b0b9d4b95d1e5f243ab2ca7"
   integrity sha512-KfRL3PuHmqQLOG+2tGpRO26Ctg+Cq1E01D2DMriKEATHgWLfeNDmq9e29Q9WIky0dQ3NPkd1mzYH8Lm936Z9qw==
 
-"@types/ptomasroos__react-native-multi-slider@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.npmjs.org/@types/ptomasroos__react-native-multi-slider/-/ptomasroos__react-native-multi-slider-0.0.1.tgz#6cbcc1f3ea7fae847d2921bbb951239d98ffeb87"
-  integrity sha512-Jn+VZEYHAt8V797mMSABg+qCiU+pBklHxxI5bq294cKFSNa6eN5LIojyvaZBHCns0kY5viiTquCKthRwI+zybQ==
-  dependencies:
-    "@types/react" "*"
-    "@types/react-native" "*"
-
-"@types/react-native@*":
-  version "0.61.20"
-  resolved "https://registry.npmjs.org/@types/react-native/-/react-native-0.61.20.tgz#937d8ed9768bdfc982e785563c07b4905ba0fd1f"
-  integrity sha512-EEtaP15gpDhpB1N8G3a+nWAzSa3HiLAZvfFkvczCluQXiB2vXAVJyxWls1i3Q9TERVWE3JbOuufgCY6bV1qTzw==
-  dependencies:
-    "@types/react" "*"
-
 "@types/react-native@~0.60.23":
   version "0.60.31"
   resolved "https://registry.npmjs.org/@types/react-native/-/react-native-0.60.31.tgz#a7af12197f884ad8dd22cda2df9862ed72973ded"

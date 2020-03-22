@@ -34,8 +34,8 @@ const ActivityLevelScreen: FC<ScreenProps> = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   bg: {
-    top: '30%',
-    height: '40%'
+    top: '20%',
+    height: '60%'
   },
   box: {
     flex: 1,
@@ -43,9 +43,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingTop: '12%',
     paddingBottom: 70
-  },
-  title: {
-    textAlign: 'center'
   },
   levelText: {
     fontSize: 20
